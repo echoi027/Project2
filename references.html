@@ -9,16 +9,16 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@300;400&family=Montserrat&display=swap" rel="stylesheet">
     <script>
-      // Open the modal
-      function openModal(imageSrc) {
-          document.getElementById('modal-img').src = imageSrc;
-          document.getElementById('myModal').style.display = "block";
-      }
+        // Open the modal
+        function openModal(imageSrc) {
+            document.getElementById('modal-img').src = imageSrc;
+            document.getElementById('myModal').style.display = "block";
+        }
 
-      // Close the modal
-      function closeModal() {
-          document.getElementById('myModal').style.display = "none";
-      }
+        // Close the modal
+        function closeModal() {
+            document.getElementById('myModal').style.display = "none";
+        }
   </script>
 
 </head>
@@ -66,8 +66,14 @@
             </div>
           </div>
          
-    </div>
-          
+    <!-- The Modal -->
+    <div id="myModal" class="modal" onclick="closeModal()">
+      <!-- Modal content -->
+      <div class="modal-content" onclick="event.stopPropagation()">
+          <span class="close" onclick="closeModal()">&times;</span>
+          <img id="modal-img" style="width:100%">
+      </div>
+  </div>
        
 </body>
 </html>
