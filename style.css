@@ -20,7 +20,7 @@ h1{text-align: center;
    margin-left: 70px;
    margin-right:70px;
    line-height: 40px;
-   background-color: rgb(230, 255, 241);
+  background-color: #fff;
 
 }
 
@@ -193,7 +193,7 @@ h1{text-align: center;
   
   /* Style the images inside the grid */
   .column img {
-    opacity: 0.8; 
+    opacity: 0.5; 
     cursor: pointer; 
   }
   
