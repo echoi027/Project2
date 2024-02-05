@@ -34,6 +34,15 @@
      </div>
      <p>Choose a color from the samples, then click and drag your mouse to draw on the grid items</p>
 
+<!-- Slider to adjust number of grid items -->
+<div class="slider-container">
+    <label for="slider" class="slider-label">Adjust Grid Size:</label>
+    <input type="range" id="slider" min="1" max="50" value="10">
+</div>
+
+<!-- Reset button to clear the grid -->
+<button id="reset">Reset</button>
+
      <div class="grid-container">
         <div class="grid-item"></div>
         <div class="grid-item"></div>
@@ -138,50 +147,77 @@
     </div>
 
 
- 
-<script>
-     document.addEventListener('DOMContentLoaded', function() {
-            const gridItems = document.querySelectorAll('.grid-item');
-            const samples = document.querySelectorAll('.sample');
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const container = document.querySelector(".grid-container");
+            var slider = document.getElementById("slider");
+            var reset = document.getElementById("reset");
+            var colorSamples = document.querySelectorAll(".sample");
             let isDrawing = false;
-            let currentColor = 'black'; // Default color
+            let currentColor = 'black';
 
-            samples.forEach((sample, index) => {
-                sample.addEventListener('click', function() {
+            // Initialize grid with 10x10 on page load
+            initializeGrid(10);
+
+            // Set initial value of slider to 10
+            slider.value = 10;
+
+            // Trigger change event on slider to generate initial 10x10 grid
+            slider.dispatchEvent(new Event('change'));
+
+            slider.addEventListener("change", () => {
+                initializeGrid(slider.value);
+            });
+
+            reset.addEventListener("click", () => {
+                initializeGrid(10);
+            });
+
+            // Change drawing color by clicking color samples
+            colorSamples.forEach(sample => {
+                sample.addEventListener("click", () => {
                     currentColor = sample.style.backgroundColor;
                 });
             });
 
-            function handleMouseDown(event) {
+            // Drawing functionality
+            container.addEventListener('mousedown', () => {
                 isDrawing = true;
-                draw(event);
-            }
+            });
 
-            function handleMouseMove(event) {
-                if (isDrawing) {
-                    draw(event);
-                }
-            }
-
-            function handleMouseUp() {
+            container.addEventListener('mouseup', () => {
                 isDrawing = false;
-            }
+            });
+
+            container.addEventListener('mouseover', draw);
 
             function draw(event) {
                 if (!isDrawing) return;
                 const cell = event.target;
-                if (cell.classList.contains('grid-item')) {
-                    cell.style.backgroundColor = currentColor;
-                }
+                cell.style.backgroundColor = currentColor;
             }
 
-            gridItems.forEach(gridItem => {
-                gridItem.addEventListener('mousedown', handleMouseDown);
-                gridItem.addEventListener('mousemove', handleMouseMove);
-                gridItem.addEventListener('mouseup', handleMouseUp);
-            });
-   
+            function initializeGrid(size) {
+                container.innerHTML = ''; // Clear existing grid items
+
+                container.style.gridTemplateRows = `repeat(${size}, 1fr)`;
+                container.style.gridTemplateColumns = `repeat(${size}, 1fr)`;
+
+                for (let i = 0; i < (size * size); i++) {
+                    let square = document.createElement('div');
+                    square.classList.add("grid-item");
+                    container.appendChild(square);
+                }
+
+                const gridCells = document.querySelectorAll(".grid-item");
+
+                gridCells.forEach(cell => {
+                    cell.addEventListener("mouseover", () => {
+                        cell.classList.add("hov-square");
+                    });
+                });
+            }
         });
-   </script>    
+    </script>
 </body>
 </html>
