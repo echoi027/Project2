@@ -299,5 +299,22 @@ button{
     body {
       background-image: none;
       background-color: white;
+
     }
+    .grid-container{
+      max-width: 400px; /* Fixed width for the grid */
+      height: 400px; 
+      
+    }
+    .row {
+      display: flex; /* Change display to flex */
+      flex-wrap: wrap; /* Allow items to wrap to the next line */
+  }
+
+  .column {
+      width: 50%; /* Change width to 50% for two columns */
+      flex-grow: 1; /* Allow columns to grow to fill the space */
+      flex-basis: 50%; /* Set initial size of columns */
+      margin-bottom: 20px; /* Add margin to create space between columns */
+  }
   }
