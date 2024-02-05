@@ -34,10 +34,14 @@
      </div>
      <p>Choose a color from the samples, then click and drag your mouse to draw on the grid items</p>
 
+
 <!-- Slider to adjust number of grid items -->
 <div class="slider-container">
     <label for="slider" class="slider-label">Adjust Grid Size:</label>
-    <input type="range" id="slider" min="1" max="50" value="10">
+    <div class="slider-wrapper">
+        <input type="range" id="slider" min="1" max="50" value="10">
+        <span id="slider-value" class="slider-value">10</span>
+    </div>
 </div>
 
 <!-- Reset button to clear the grid -->
@@ -152,6 +156,7 @@
             const container = document.querySelector(".grid-container");
             var slider = document.getElementById("slider");
             var reset = document.getElementById("reset");
+            var sliderValue = document.getElementById("slider-value");
             var colorSamples = document.querySelectorAll(".sample");
             let isDrawing = false;
             let currentColor = 'black';
@@ -161,26 +166,32 @@
 
             // Set initial value of slider to 10
             slider.value = 10;
+            sliderValue.textContent = slider.value;
 
             // Trigger change event on slider to generate initial 10x10 grid
             slider.dispatchEvent(new Event('change'));
 
             slider.addEventListener("change", () => {
                 initializeGrid(slider.value);
+                sliderValue.textContent = slider.value;
             });
 
             reset.addEventListener("click", () => {
-                initializeGrid(10);
-            });
+                const gridCells = document.querySelectorAll(".grid-item");
 
-            // Change drawing color by clicking color samples
-            colorSamples.forEach(sample => {
-                sample.addEventListener("click", () => {
-                    currentColor = sample.style.backgroundColor;
+                gridCells.forEach(cell => {
+                    cell.style.backgroundColor = 'white';
+                    cell.classList.remove("hov-square");
                 });
             });
 
             // Drawing functionality
+            function draw(event) {
+                if (!isDrawing) return;
+                const cell = event.target;
+                cell.style.backgroundColor = currentColor;
+            }
+
             container.addEventListener('mousedown', () => {
                 isDrawing = true;
             });
@@ -191,11 +202,12 @@
 
             container.addEventListener('mouseover', draw);
 
-            function draw(event) {
-                if (!isDrawing) return;
-                const cell = event.target;
-                cell.style.backgroundColor = currentColor;
-            }
+            // Set color for drawing
+            colorSamples.forEach(sample => {
+                sample.addEventListener('click', () => {
+                    currentColor = sample.style.backgroundColor;
+                });
+            });
 
             function initializeGrid(size) {
                 container.innerHTML = ''; // Clear existing grid items
