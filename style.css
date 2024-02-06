@@ -13,17 +13,17 @@ h1{text-align: center;
     }
    
 .intro{
-  padding-top: 20px;
-  padding-bottom: 20px;
+  padding: 20px;
     display: block;
     width: fit-content;
    margin:50px;
-   margin-left: 70px;
-   margin-right:70px;
+   margin-left: 350px;
+   margin-right:350px;
    line-height: 40px;
   background-color: rgba(255, 255, 255, 0.9);
   border-style:ridge;
   border-width: 10px;
+ 
   
 
 
@@ -72,6 +72,7 @@ h1{text-align: center;
     border: 1px solid black; /* Border for the grid */
     margin: 0px auto;
     margin-top: 20px;
+    margin-bottom: 30px;
     max-width: 500px; /* Fixed width for the grid */
     height: 500px; /* Fixed height for the grid */
     overflow: hidden; /* Prevents the container from expanding when grid items become too small */
@@ -317,6 +318,11 @@ button{
       flex-grow: 1; /* Allow columns to grow to fill the space */
       flex-basis: 50%; /* Set initial size of columns */
       margin-bottom: 20px; /* Add margin to create space between columns */
+
+  }
+  .intro{
+    margin-left: 70px;
+    margin-right:70px;
   }
 }
 

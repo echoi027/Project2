@@ -54,7 +54,7 @@
     </div>
 
     <script>
-         document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function() {
             const container = document.querySelector(".grid-container");
             var slider = document.getElementById("slider");
             var reset = document.getElementById("reset");
@@ -106,6 +106,20 @@
             });
 
             container.addEventListener('mouseover', draw);
+
+            // Touch events for drawing
+            container.addEventListener('touchstart', (e) => {
+                e.preventDefault();
+                isDrawing = true;
+                draw(e.touches[0]);
+            }, { passive: false });
+
+            container.addEventListener('touchmove', (e) => {
+                e.preventDefault();
+                if (isDrawing) {
+                    draw(e.touches[0]);
+                }
+            }, { passive: false });
 
             // Set color for drawing
             colorSamples.forEach(sample => {
