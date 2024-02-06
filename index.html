@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@300;400&family=Montserrat&family=Pixelify+Sans&display=swap" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js" integrity="sha512-BNaRQnYJYiPSqHHDb58B0yaPfCu+Wgds8Gp/gU33kqBtgNS4tSPHuGibyoeqMV/TJlSKda6FXzoEyYGjTe+vXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
 <body>
     <div class="header">
@@ -54,7 +54,7 @@
     </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
+         document.addEventListener('DOMContentLoaded', function() {
             const container = document.querySelector(".grid-container");
             var slider = document.getElementById("slider");
             var reset = document.getElementById("reset");
@@ -136,16 +136,10 @@
             }
 
             function exportImage() {
-                html2canvas(container).then(canvas => {
-                    // Convert canvas to base64 image
-                    var imageData = canvas.toDataURL("image/png");
-
-                    // Create a temporary anchor element
+                html2canvas(document.querySelector(".grid-container")).then(canvas => {
                     var link = document.createElement('a');
                     link.download = 'social_avatar.png';
-                    link.href = imageData;
-
-                    // Trigger the click event on the anchor element
+                    link.href = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
                     link.click();
                 });
             }
