@@ -54,7 +54,7 @@
     </div>
 
     <script>
-       document.addEventListener('DOMContentLoaded', function() {
+      document.addEventListener('DOMContentLoaded', function() {
             const container = document.querySelector(".grid-container");
             var slider = document.getElementById("slider");
             var reset = document.getElementById("reset");
@@ -97,6 +97,7 @@
                 cell.style.backgroundColor = currentColor;
             }
 
+            // Mouse events for drawing
             container.addEventListener('mousedown', () => {
                 isDrawing = true;
             });
@@ -111,13 +112,21 @@
             container.addEventListener('touchstart', (e) => {
                 e.preventDefault();
                 isDrawing = true;
-                draw(e.touches[0]);
+                draw(e);
             }, { passive: false });
+
+            container.addEventListener('touchend', () => {
+                isDrawing = false;
+            });
 
             container.addEventListener('touchmove', (e) => {
                 e.preventDefault();
                 if (isDrawing) {
-                    draw(e.touches[0]);
+                    const touch = e.touches[0];
+                    const targetCell = document.elementFromPoint(touch.clientX, touch.clientY);
+                    if (targetCell && targetCell.classList.contains('grid-item')) {
+                        draw({ target: targetCell });
+                    }
                 }
             }, { passive: false });
 
