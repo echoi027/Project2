@@ -3,33 +3,147 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Project2</title>
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@300;400&family=Montserrat&family=Pixelify+Sans&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js" integrity="sha512-BNaRQnYJYiPSqHHDb58B0yaPfCu+Wgds8Gp/gU33kqBtgNS4tSPHuGibyoeqMV/TJlSKda6FXzoEyYGjTe+vXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
 <body>
     <div class="header">
         <h1>Draw your social avatar</h1>
-        </div>
-        <ul>
-            <li><a class="active" href="about.html">About</a></li>
-            <li><a href="index.html">Create!</a></li>
-             <li><a href="references.html">Gallery</a></li>
-        </ul>
+    </div>
+    <ul>
+        <li><a class="active" href="index.html">About</a></li>
+        <li><a href="about.html">Create!</a></li>
+         <li><a href="references.html">Gallery</a></li>
+    </ul>
 
-<br>
-    <h2>Welcome to our social avatar creator!</h2>
-    <br>
-    <div class="intro"><p>
-         Have you ever wanted to express yourself with a unique avatar that truly represents you in the digital world? Look no further! Our website allows you to unleash your creativity and craft your very own social persona.
-        Inspired by the diverse avatars found across social media platforms, we provide you with the tools to design a personalized avatar that reflects your personality, interests, and style. Whether you envision a cartoon version of yourself, a whimsical character, or something entirely abstract, the possibilities are endless.
-        
-        Express yourself through colors, shapes, and designs as you bring your digital persona to life. Once you're satisfied with your creation, you can use it as your profile picture on social media, forums, or any online platform, adding a touch of uniqueness to your online presence.
-        
-        Join our community of creators and start designing your social avatar today. Let your imagination soar and show the world the true essence of you!
-        
-        Feel free to customize this description to better fit the tone and style of your website.</P></div>
+    <h2 class="sample">Color choices</h2>
+    <div class="sample-container">
+        <div class="sample sample1" style="background-color: red;"></div>
+        <div class="sample sample2" style="background-color: yellow;"></div>
+        <div class="sample sample3" style="background-color: orange;"></div>
+        <div class="sample sample4" style="background-color: yellowgreen;"></div>
+        <div class="sample sample5" style="background-color: green;"></div>
+        <div class="sample sample6" style="background-color: blue;"></div>
+        <div class="sample sample7" style="background-color: blueviolet;"></div>
+        <div class="sample sample8" style="background-color: pink;"></div>
+        <div class="sample sample9" style="background-color: black;"></div>
+        <div class="sample sample10" style="background-color: white;"></div>
+    </div>
+    <p>Choose a color from the samples, then click and drag your mouse to draw on the grid items</p>
+
+    <!-- Slider to adjust number of grid items -->
+    <div class="slider-container">
+        <label for="slider" class="slider-label">Adjust Grid Size:</label>
+        <div class="slider-wrapper">
+            <input type="range" id="slider" min="1" max="50" value="10">
+            <span id="slider-value" class="slider-value">10</span>
+        </div>
+    </div>
+
+    <!-- Reset button to clear the grid -->
+    <button id="reset">Reset</button> 
+    <!-- Add export button -->
+    <button id="exportButton">Export Image</button>
+
+    <div class="grid-container">
+        <!-- Grid items will be dynamically added here -->
+    </div>
+
+    <script>
+         document.addEventListener('DOMContentLoaded', function() {
+            const container = document.querySelector(".grid-container");
+            var slider = document.getElementById("slider");
+            var reset = document.getElementById("reset");
+            var exportButton = document.getElementById("exportButton");
+            var sliderValue = document.getElementById("slider-value");
+            var colorSamples = document.querySelectorAll(".sample");
+            let isDrawing = false;
+            let currentColor = 'black';
+
+            // Initialize grid with 10x10 on page load
+            initializeGrid(10);
+
+            // Set initial value of slider to 10
+            slider.value = 10;
+            sliderValue.textContent = slider.value;
+
+            // Trigger change event on slider to generate initial 10x10 grid
+            slider.dispatchEvent(new Event('change'));
+
+            slider.addEventListener("change", () => {
+                initializeGrid(slider.value);
+                sliderValue.textContent = slider.value;
+            });
+
+            reset.addEventListener("click", () => {
+                const gridCells = document.querySelectorAll(".grid-item");
+
+                gridCells.forEach(cell => {
+                    cell.style.backgroundColor = 'white';
+                    cell.classList.remove("hov-square");
+                });
+            });
+
+            exportButton.addEventListener("click", exportImage);
+
+            // Drawing functionality
+            function draw(event) {
+                if (!isDrawing) return;
+                const cell = event.target;
+                cell.style.backgroundColor = currentColor;
+            }
+
+            container.addEventListener('mousedown', () => {
+                isDrawing = true;
+            });
+
+            container.addEventListener('mouseup', () => {
+                isDrawing = false;
+            });
+
+            container.addEventListener('mouseover', draw);
+
+            // Set color for drawing
+            colorSamples.forEach(sample => {
+                sample.addEventListener('click', () => {
+                    currentColor = sample.style.backgroundColor;
+                });
+            });
+
+            function initializeGrid(size) {
+                container.innerHTML = ''; // Clear existing grid items
+
+                container.style.gridTemplateRows = `repeat(${size}, 1fr)`;
+                container.style.gridTemplateColumns = `repeat(${size}, 1fr)`;
+
+                for (let i = 0; i < (size * size); i++) {
+                    let square = document.createElement('div');
+                    square.classList.add("grid-item");
+                    container.appendChild(square);
+                }
+
+                const gridCells = document.querySelectorAll(".grid-item");
+
+                gridCells.forEach(cell => {
+                    cell.addEventListener("mouseover", () => {
+                        cell.classList.add("hov-square");
+                    });
+                });
+            }
+
+            function exportImage() {
+                html2canvas(document.querySelector(".grid-container")).then(canvas => {
+                    var link = document.createElement('a');
+                    link.download = 'social_avatar.png';
+                    link.href = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
+                    link.click();
+                });
+            }
+        });
+    </script>
 </body>
 </html>
