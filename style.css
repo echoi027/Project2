@@ -326,8 +326,8 @@ button{
     font-size: 12px;
   }
   .sample1,.sample2,.sample3,.sample4,.sample5,.sample6,.sample7,.sample8,.sample9,.sample10{
-    height:max-content;
-    width: auto;
+    height:10px;
+    width: 10px;
   }
 }
 
