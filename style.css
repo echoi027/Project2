@@ -19,6 +19,10 @@ h1{text-align: center;
    margin-right:70px;
    line-height: 40px;
   background-color: rgba(255, 255, 255, 0.9);
+  border-style:ridge;
+  border-width: 10px;
+  
+
 
 }
 
@@ -85,6 +89,7 @@ h1{text-align: center;
   align-items: center;
   margin-top: 20px;
   font-family: 'Pixelify Sans', sans-serif;
+  font-size: 18px;
   
 }
 
@@ -156,7 +161,9 @@ button{
     display: block;
     margin: auto;
     font-family: 'Pixelify Sans', sans-serif;
+    font-size: 15px;
     margin-bottom: 15px;
+    background-color: white;
 
 }
 .sample{ 
