@@ -156,6 +156,7 @@ button{
     display: block;
     margin: auto;
     font-family: 'Pixelify Sans', sans-serif;
+    margin-bottom: 15px;
 
 }
 .sample{ 
@@ -264,35 +265,26 @@ button{
     font-family: Arial;
   }
   
-  /* The grid: Four equal columns that floats next to each other */
-  .column {
-    float: left;
-    width: 25%;
-    padding: 10px;
-  }
-  
-  /* Style the images inside the grid */
-  .column img {
-    opacity: 0.5; 
-    cursor: pointer; 
-  }
-  
+/* The grid: Four equal columns that floats next to each other */
+.row {display: flex;
+  flex-wrap: wrap;
+  margin: 0 -10px; /* Negative margin to compensate for padding */
+        }
+
+.column {flex: 25%; /* Each column should take up 25% of the row */
+  padding: 10px;
+        }
+
+/* Style the images inside the grid */
+.column img {opacity: 0.5;
+  cursor: pointer;
+  width: 100%; /* Make sure images fill the column */
+  transition: opacity 0.3s;}
+
   .column img:hover {
     opacity: 1;
-  }
-  
-  /* Clear floats after the columns */
-  .row:after {
-    content: "";
-    display: table;
-    clear: both;
-  }
-  
-  /* The expanding image container */
-  .container {
-    position: relative;
-    display: none;
-  }
+      }
+
   
   @media only screen and (max-width: 768px) {
     body {
@@ -317,4 +309,75 @@ button{
       margin-bottom: 20px; /* Add margin to create space between columns */
   }
 }
-   
+
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgba(0, 0, 0, 0.9); /* Black w/ opacity */
+}
+
+/* Modal Content (image) */
+.modal-content {
+  margin: auto;
+  display: block;
+  width: 80%;
+  max-width: 500px;
+}
+
+/* Caption of Modal Image */
+#caption {
+  margin: auto;
+  display: block;
+  width: 80%;
+  max-width: 700px;
+  text-align: center;
+  color: #ccc;
+  padding: 10px 0;
+  height: 150px;
+  font-family: 'Pixelify Sans', sans-serif;
+  font-size: 15px;
+}
+
+/* Add Animation */
+.modal-content, #caption {
+  animation-name: zoom;
+  animation-duration: 0.6s;
+}
+
+@keyframes zoom {
+  from {transform: scale(0)}
+  to {transform: scale(1)}
+}
+
+/* The Close Button */
+.close {
+  position: absolute;
+  top: 15px;
+  right: 35px;
+  color: #f1f1f1;
+  font-size: 40px;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.close:hover, .close:focus {
+  color: #bbb;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* 100% Image Width on Smaller Screens */
+@media only screen and (max-width: 700px) {
+  .modal-content {
+      width: 100%;
+  }
+}

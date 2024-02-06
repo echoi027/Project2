@@ -8,20 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@300;400&family=Montserrat&family=Pixelify+Sans&display=swap" rel="stylesheet"></head>
-    <script>
-        // Open the modal
-        function openModal(imageSrc) {
-            document.getElementById('modal-img').src = imageSrc;
-            document.getElementById('myModal').style.display = "block";
-        }
-
-        // Close the modal
-        function closeModal() {
-            document.getElementById('myModal').style.display = "none";
-        }
-  </script>
-
-</head>
+    
 
 <body>
     <div class="header">
@@ -38,42 +25,52 @@
             <p>Social avatars made by other users!</p>
           </div>
           
-
-        <div class="row">
+          <div class="row">
             <div class="column">
-              <img src="squidgame.jpg" alt="Nature" style="width:100%" onclick="myFunction(this);">
-              <img src="picachoo.png" alt="Nature" style="width:100%" onclick="myFunction(this);">
-              <img src="strawberry.jpeg" alt="strawberry" style="width:100%" onclick="myFunction(this);">
+                <img src="squidgame.jpg" alt="Squid Game" style="width:100%" onclick="openModal('squidgame.jpg', 'Squid Game');">
+                <img src="picachoo.png" alt="Picachoo" style="width:100%" onclick="openModal('picachoo.png', 'Pikachu');">
+                <img src="strawberry.jpeg" alt="Strawberry" style="width:100%" onclick="openModal('strawberry.jpeg', 'Strawberry');">
             </div>
             <div class="column">
-              <img src="dog.jpg" alt="Snow" style="width:100%" onclick="myFunction(this);">
-              <img src="snoopy.jpg" alt="Snow" style="width:100%" onclick="myFunction(this);">
-              <img src="kitty.jpeg" alt="kitty" style="width:100%" onclick="myFunction(this);">
-
+                <img src="dog.jpg" alt="Cute Dogs" style="width:100%" onclick="openModal('dog.jpg', 'Cute doggos');">
+                <img src="snoopy.jpg" alt="Snoopy" style="width:100%" onclick="openModal('snoopy.jpg', 'Snoopy');">
+                <img src="kitty.jpeg" alt="Hello Kitty" style="width:100%" onclick="openModal('kitty.jpeg', 'Hello Kitty');">
             </div>
             <div class="column">
-              <img src="ghost.jpg" alt="Mountains" style="width:100%" onclick="myFunction(this);">
-              <img src="mario.webp" alt="Mountains" style="width:100%" onclick="myFunction(this);">
-              <img src="whale.png" alt="dolphin" style="width:100%" onclick="myFunction(this);">
-
+                <img src="ghost.jpg" alt="Ghost" style="width:100%" onclick="openModal('ghost.jpg', 'Ghost');">
+                <img src="mario.webp" alt="Mario" style="width:100%" onclick="openModal('mario.webp', 'Mario');">
+                <img src="whale.png" alt="Whale" style="width:100%" onclick="openModal('whale.png', 'Whale');">
             </div>
             <div class="column">
-              <img src="Group 4.png" alt="Lights" style="width:100%" onclick="myFunction(this);">
-              <img src="Bug.jpg" alt="Lights" style="width:100%" onclick="myFunction(this);">
-              <img src="dolphin.jpeg" alt="dolphin" style="width:100%" onclick="myFunction(this);">
-              <img src="capy.jpeg" alt="dolphin" style="width:100%" onclick="myFunction(this);">
-
+                <img src="Group 4.png" alt="Group 4" style="width:100%" onclick="openModal('Group 4.png', 'Teenager');">
+                <img src="Bug.jpg" alt="Bug" style="width:100%" onclick="openModal('Bug.jpg', 'Bug');">
+                <img src="dolphin.jpeg" alt="Dolphin" style="width:100%" onclick="openModal('dolphin.jpeg', 'Dolphin');">
+                <img src="capy.jpeg" alt="Capy" style="width:100%" onclick="openModal('capy.jpeg', 'Capybara');">
             </div>
-          </div>
-         
-    <!-- The Modal -->
-    <div id="myModal" class="modal" onclick="closeModal()">
-      <!-- Modal content -->
-      <div class="modal-content" onclick="event.stopPropagation()">
-          <span class="close" onclick="closeModal()">&times;</span>
-          <img id="modal-img" style="width:100%">
-      </div>
-  </div>
-       
-</body>
-</html>
+        </div>
+    
+        <!-- The Modal -->
+        <div id="myModal" class="modal">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <img class="modal-content" id="modal-img">
+            <div id="caption"></div>
+        </div>
+    
+        <script>
+            // Open the modal
+            function openModal(imageSrc, altText) {
+                var modal = document.getElementById('myModal');
+                var modalImg = document.getElementById('modal-img');
+                var captionText = document.getElementById('caption');
+                modal.style.display = "block";
+                modalImg.src = imageSrc;
+                captionText.innerHTML = altText;
+            }
+    
+            // Close the modal
+            function closeModal() {
+                document.getElementById('myModal').style.display = "none";
+            }
+        </script>
+    </body>
+    </html>

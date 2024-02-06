@@ -7,10 +7,12 @@
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@300;400&family=Montserrat&family=Pixelify+Sans&display=swap" rel="stylesheet"></head>
+    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@300;400&family=Montserrat&family=Pixelify+Sans&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
+</head>
 <body>
     <div class="header">
-    <h1>Draw your social avatar</h1>
+        <h1>Draw your social avatar</h1>
     </div>
     <ul>
         <li><a class="active" href="index.html">Home</a></li>
@@ -18,9 +20,9 @@
         <li><a href="about.html">About</a></li>
     </ul>
 
-      <h2 class="sample">Color choices</h2>
+    <h2 class="sample">Color choices</h2>
     <div class="sample-container">
-     <div class="sample sample1" style="background-color: red;"></div>
+        <div class="sample sample1" style="background-color: red;"></div>
         <div class="sample sample2" style="background-color: yellow;"></div>
         <div class="sample sample3" style="background-color: orange;"></div>
         <div class="sample sample4" style="background-color: yellowgreen;"></div>
@@ -30,131 +32,33 @@
         <div class="sample sample8" style="background-color: pink;"></div>
         <div class="sample sample9" style="background-color: black;"></div>
         <div class="sample sample10" style="background-color: white;"></div>
-     </div>
-     <p>Choose a color from the samples, then click and drag your mouse to draw on the grid items</p>
-
-
-<!-- Slider to adjust number of grid items -->
-<div class="slider-container">
-    <label for="slider" class="slider-label">Adjust Grid Size:</label>
-    <div class="slider-wrapper">
-        <input type="range" id="slider" min="1" max="50" value="10">
-        <span id="slider-value" class="slider-value">10</span>
     </div>
-</div>
+    <p>Choose a color from the samples, then click and drag your mouse to draw on the grid items</p>
 
-<!-- Reset button to clear the grid -->
-<button id="reset">Reset</button>
-
-     <div class="grid-container">
-        <div class="grid-item"></div>
-        <div class="grid-item"></div>
-        <div class="grid-item"></div>
-        <div class="grid-item"></div>
-        <div class="grid-item"></div>
-        <div class="grid-item"></div>
-        <div class="grid-item"></div>
-        <div class="grid-item"></div>
-        <div class="grid-item"></div>
-        <div class="grid-item"></div>
-        <div class="grid-item"></div>
-        <div class="grid-item"></div>
-        <div class="grid-item"></div>
-        <div class="grid-item"></div>
-        <div class="grid-item"></div>
-        <div class="grid-item"></div>
-        <div class="grid-item"></div>
-        <div class="grid-item"></div>
-        <div class="grid-item"></div>
-        <div class="grid-item"></div>
-        <div class="grid-item"></div>
-        <div class="grid-item"></div>
-        <div class="grid-item"></div>
-        <div class="grid-item"></div>
-        <div class="grid-item"></div>
-        <div class="grid-item"></div>
-        <div class="grid-item"></div>
-        <div class="grid-item"></div>
-        <div class="grid-item"></div>
-        <div class="grid-item"></div>
-        <div class="grid-item"></div>
-        <div class="grid-item"></div>
-        <div class="grid-item"></div>
-        <div class="grid-item"></div>
-        <div class="grid-item"></div>
-        <div class="grid-item"></div>
-        <div class="grid-item"></div>  
-        <div class="grid-item"></div>
-        <div class="grid-item"></div>
-        <div class="grid-item"></div>
-        <div class="grid-item"></div>
-        <div class="grid-item"></div>
-        <div class="grid-item"></div>
-        <div class="grid-item"></div>
-        <div class="grid-item"></div>
-        <div class="grid-item"></div>
-        <div class="grid-item"></div>
-        <div class="grid-item"></div>
-        <div class="grid-item"></div>
-        <div class="grid-item"></div>
-        <div class="grid-item"></div>
-        <div class="grid-item"></div>
-        <div class="grid-item"></div>
-        <div class="grid-item"></div>
-        <div class="grid-item"></div>
-        <div class="grid-item"></div>
-        <div class="grid-item"></div>
-        <div class="grid-item"></div>
-        <div class="grid-item"></div>
-        <div class="grid-item"></div>
-        <div class="grid-item"></div>
-        <div class="grid-item"></div>
-        <div class="grid-item"></div>
-        <div class="grid-item"></div>
-        <div class="grid-item"></div>
-        <div class="grid-item"></div>
-        <div class="grid-item"></div>
-        <div class="grid-item"></div>
-        <div class="grid-item"></div>
-        <div class="grid-item"></div>
-        <div class="grid-item"></div>
-        <div class="grid-item"></div>
-        <div class="grid-item"></div>
-        <div class="grid-item"></div>
-        <div class="grid-item"></div>
-        <div class="grid-item"></div>
-        <div class="grid-item"></div>
-        <div class="grid-item"></div>
-        <div class="grid-item"></div>
-        <div class="grid-item"></div>
-        <div class="grid-item"></div>
-        <div class="grid-item"></div>
-        <div class="grid-item"></div>
-        <div class="grid-item"></div>
-        <div class="grid-item"></div>
-        <div class="grid-item"></div>
-        <div class="grid-item"></div>  
-        <div class="grid-item"></div>
-        <div class="grid-item"></div>
-        <div class="grid-item"></div>
-        <div class="grid-item"></div>
-        <div class="grid-item"></div>
-        <div class="grid-item"></div>
-        <div class="grid-item"></div>
-        <div class="grid-item"></div>
-        <div class="grid-item"></div>
-        <div class="grid-item"></div>
-        <div class="grid-item"></div>
-        <div class="grid-item"></div>
-        <div class="grid-item"></div>
+    <!-- Slider to adjust number of grid items -->
+    <div class="slider-container">
+        <label for="slider" class="slider-label">Adjust Grid Size:</label>
+        <div class="slider-wrapper">
+            <input type="range" id="slider" min="1" max="50" value="10">
+            <span id="slider-value" class="slider-value">10</span>
+        </div>
     </div>
 
+    <!-- Reset button to clear the grid -->
+    <button id="reset">Reset</button> 
+    <!-- Add export button -->
+    <button id="exportButton">Export Image</button>
+
+    <div class="grid-container">
+        <!-- Grid items will be dynamically added here -->
+    </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const container = document.querySelector(".grid-container");
             var slider = document.getElementById("slider");
             var reset = document.getElementById("reset");
+            var exportButton = document.getElementById("exportButton");
             var sliderValue = document.getElementById("slider-value");
             var colorSamples = document.querySelectorAll(".sample");
             let isDrawing = false;
@@ -183,6 +87,8 @@
                     cell.classList.remove("hov-square");
                 });
             });
+
+            exportButton.addEventListener("click", exportImage);
 
             // Drawing functionality
             function draw(event) {
@@ -226,6 +132,21 @@
                     cell.addEventListener("mouseover", () => {
                         cell.classList.add("hov-square");
                     });
+                });
+            }
+
+            function exportImage() {
+                html2canvas(container).then(canvas => {
+                    // Convert canvas to base64 image
+                    var imageData = canvas.toDataURL("image/png");
+
+                    // Create a temporary anchor element
+                    var link = document.createElement('a');
+                    link.download = 'social_avatar.png';
+                    link.href = imageData;
+
+                    // Trigger the click event on the anchor element
+                    link.click();
                 });
             }
         });
